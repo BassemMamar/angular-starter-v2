@@ -1,0 +1,45 @@
+// /****************************/
+// /* BLOCK UI OVERRIDE STYLES */
+// /****************************/
+
+// /* Block UI Wrapper (Backdrop) */
+ div.block-ui-wrapper {
+     background-color: rgba(212, 205, 205, 0.246);
+   //  background-color: rgba(104, 101, 101, 0.246);
+   }
+  
+  /* Spinner */
+  div.block-ui-wrapper .loader {
+    border-color: #fff; /* Circle color */
+    border-left-color: #5867dd; /* Spinning section in circle color */
+    border-radius: 50%;
+  }
+  div.block-ui-wrapper .loader:before {
+    border-top-color: #5867dd;
+    width: 2rem;
+    height: 2rem;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    border-top-width: 3px;
+    border-right-width: 3px;
+   }
+
+  /* Message */
+  div.block-ui-spinner .message {
+    color: #ffffff; /* Loading text color */
+  }
+
+// custom style for block ui template
+
+.block-ui-message {
+position: absolute;
+top:  40%;
+left:  40%;
+text-align: center;
+border: 0px;
+cursor: wait;
+}
+
+.block-ui-default > .m-loader{
+   position: inherit !important;
+ }

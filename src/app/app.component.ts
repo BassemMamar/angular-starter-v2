@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+
+import { PageLoaderService } from './core/components/page-loader/page-loader.service';
+import { LoggerService } from './core/base/logger/logger.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit, AfterViewInit {
+
+  constructor(private router: Router, private logger: LoggerService, private pageLoader: PageLoaderService) { }
+
+  ngOnInit() { }
+
+  ngAfterViewInit() {
+
+    this.router.events.subscribe((route) => {
+      /* Route Navigation Start */
+      if (route instanceof NavigationStart) {
+        this.pageLoader.setLoading(true);
+      }
+
+      /* Route Navigation End */
+      if (route instanceof NavigationEnd) {
+        this.pageLoader.setLoading(false);
+        //  this.logger.log('NavigationEnd => route.url => ', route.url);
+      }
+
+      /* Route Navigation Error */
+      if (route instanceof NavigationError) {
+        this.pageLoader.setLoading(false);
+      }
+
+    });
+  }
 }
+

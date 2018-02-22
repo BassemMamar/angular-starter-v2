@@ -1,15 +1,24 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular-starter-v2"
+    "name": "Angular Starter -V2"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
-        "favicon.ico"
+        
+        {
+          "glob": "web.config",
+          "input": "./assets/",
+          "output": "./"
+        },
+        {
+          "glob": "favicon.ico",
+          "input": "./",
+          "output": "./"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,14 +28,20 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
+        "staging": "environments/environment.staging.ts",
+        "prod": "environments/environment.prod.ts",
+        "spec": "environments/environment.spec.ts"
+      },
+      "serviceWorker": false
     }
   ],
   "e2e": {
@@ -54,7 +69,24 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "module": {
+      "spec": false
+    },
+    "service": {
+      "spec": false
+    },
+    "component": {
+      "spec": false
+    },
+    "directive": {
+      "spec": false
+    },
+    "guard": {
+      "spec": false
+    },
+    "pipe": {
+      "spec": false
+    }
   }
 }

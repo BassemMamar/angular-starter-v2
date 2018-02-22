@@ -1,0 +1,30 @@
+<li *ngIf="navMenuItem.subNav.length === 0">
+  <a [routerLink]="[navMenuItem.link]">
+
+    <span>
+      {{navMenuItem.title}}
+    </span>
+  </a>
+</li>
+<li *ngIf="navMenuItem.subNav.length > 0">
+  <a>
+
+    <span>
+      {{navMenuItem.title}}
+    </span>
+  </a>
+  <div>
+    <ul>
+
+      <li *ngFor="let subItem of navMenuItem.subNav">
+        <a [routerLink]="[subItem.link]">
+
+          <span>
+            {{subItem.title}}
+          </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</li>

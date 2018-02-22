@@ -1,0 +1,15 @@
+<div *ngIf="message" class="block-ui-message">
+    <div class="m-blockui ">
+        <span>{{message}}</span>
+        <span>
+            <div class="m-loader  m-loader--primary m-loader--lg"></div>
+        </span>
+    </div>
+
+</div>
+
+<div *ngIf="!message" class="block-ui-default">
+
+    <div class="m-loader  m-loader--primary m-loader--lg">
+    </div>
+</div>

@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* node_modules*/
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~toastr/build/toastr.css";
+
+/* app */
+@import "~app/shared/components/block-ui/block-ui-template.component.scss";
