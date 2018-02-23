@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { OidcService } from './oidc.service';
 import { UserProfile } from '../model/user-profile';
 import { LoggerService } from '../../base/logger/logger.service';
 
@@ -26,7 +25,6 @@ export class AuthService {
 
     constructor(
         private router: Router,
-        private oidcService: OidcService,
         private authorizationService: AuthorizationService,
         private logger: LoggerService,
         private storageService: StorageService,
@@ -36,8 +34,7 @@ export class AuthService {
         this.logger.log('userProfile: ', this.userProfile);
 
         // If authenticated, set local profile property and update login status subject
-        if (this.userProfile.authClient && this.userProfile.authClient !== '') {
-            this.oidcService.createNewOidcUserManagerInstance(this.userProfile.authClient, this.eventsCallback.bind(this));
+        if (this.userProfile.access_token && this.userProfile.access_token !== '') {
             this.setLoggedIn(true);
         } else {
             this.setLoggedIn(false);
@@ -58,11 +55,10 @@ export class AuthService {
         this.loggedIn = value;
     }
 
-    async login(authClient: string, redirectUrl: string) {
+    async login(redirectUrl: string) {
         try {
-            // cfpLoadingBar.start();
-            await this.oidcService.signin(authClient, redirectUrl);
-            // cfpLoadingBar.complete();
+            // await this.UserService.signin(redirectUrl);
+            this.loginRedirectCallback();
             this.logger.log('signinRedirect done');
 
         } catch (error) {
@@ -71,8 +67,6 @@ export class AuthService {
             //     message: 'Login Failed... ' + err,
             //     messageType: messageHandler.messageTypes.error
             // });
-            // cfpLoadingBar.complete();
-            this.logger.log(`oidcService login failed: ${error}`);
             throw error;
 
         }
@@ -80,12 +74,12 @@ export class AuthService {
     }
 
     async loginRedirectCallback(): Promise<any> {
-        const oidcUserModel = await this.oidcService.signinRedirectCallback(this.eventsCallback.bind(this));
+        const oidcUserModel = {};
         this.logger.log(`signin response success: `, oidcUserModel);
         this.setSession(oidcUserModel);
         const accessAuthorizationretrieved = await this.authorizationService.getPagesAccessAuthorization().toPromise();
         return new Promise((resolve, reject) => {
-            accessAuthorizationretrieved === true ? resolve(oidcUserModel.state) : reject('accessAuthorizationretrieved false');
+            accessAuthorizationretrieved === true ? resolve(oidcUserModel) : reject('accessAuthorizationretrieved false');
         });
     }
     setSession(oidcUserModel) {
@@ -97,7 +91,7 @@ export class AuthService {
     async logout() {
         try {
             // cfpLoadingBar.start();
-            const resp = await this.oidcService.signout(this.userProfile.id_token);
+            const resp = {};
             this.reset();
             this.authorizationService.remove();
             this.setLoggedIn(false);
@@ -120,20 +114,14 @@ export class AuthService {
 
     private toUserProfileModelMapper(oidcUserModel): UserProfile {
 
-        const identityUserRoles = oidcUserModel.profile['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-        const identityUserEmailAddress = oidcUserModel.profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
-        const identityUserName = oidcUserModel.profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        const roles = this.getRoles(identityUserRoles);
-
         const userProfile = new UserProfile();
         userProfile.authClient = oidcUserModel.state.authClient;
-        userProfile.username = identityUserName;
-        userProfile.email = identityUserEmailAddress;
-        userProfile.id_token = oidcUserModel.id_token;
-        userProfile.access_token = oidcUserModel.access_token;
-        userProfile.roles = roles;
+        userProfile.username = 'username';
+        userProfile.email = 'username';
+        userProfile.id_token = 'id_token';
+        userProfile.access_token = 'access_token';
+        userProfile.roles = [];
 
-        this.logger.info(`toUserProfileModelMapper --> userProfile `, userProfile);
         return userProfile;
     }
     private setUserProfile(userProfile: UserProfile) {
@@ -177,31 +165,5 @@ export class AuthService {
                 break;
         }
     }
-
-
-    // private getRoles(oidcUserRoles): string[] {
-    //     let roleResults = [];
-    //     const UserRolesArray = this.Common.convertEnumToArray(UserRole, EnumType.String);
-    //     if (Array.isArray(oidcUserRoles)) {
-    //         /**
-    //          * return roles array which exist in both:
-    //          * oidcUserRoles which comes from auth server
-    //          * UserRoles which is already defined in our app
-    //          * result array properties are written as they declared in UserRoles array
-    //          */
-    //         roleResults = UserRolesArray.filter(localRole =>
-    //             oidcUserRoles
-    //                 .map(oidcRole => oidcRole.toLowerCase())
-    //                 .indexOf(localRole.toLowerCase()) !== -1);
-    //     } else
-    //         if (typeof oidcUserRoles === 'string') {
-    //             roleResults = UserRolesArray.filter(localRole => localRole.toLowerCase() === oidcUserRoles.toLowerCase());
-    //         } else {
-    //             this.logger.error(`There is an issue in roles coming from auth server..`, oidcUserRoles);
-    //             throw new Error(`There is an issue in roles coming from auth server..`);
-    //         }
-
-    //     return roleResults;
-    // }
 
 }

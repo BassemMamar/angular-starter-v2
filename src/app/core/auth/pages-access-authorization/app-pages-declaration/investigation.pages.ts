@@ -1,3 +1,3 @@
-export class InvestigationStudioPages {
+export class InvestigationPages {
     static RecentJourneys = 'RecentJourneys';
 }

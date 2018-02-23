@@ -1,8 +1,6 @@
 export enum UserRole {
-    ScanningUser = 'ScanningUser',
     Investigator = 'Investigator',
-    BusinessAdmin = 'BusinessAdmin',
-    BusinessAccountManager = 'BusinessAccountManager',
+    Manager = 'Manager',
 }
 
 export enum AccessLevel {

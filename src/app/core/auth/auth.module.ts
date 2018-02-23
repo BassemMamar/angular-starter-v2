@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthService } from './services/auth.service';
-import { OidcService } from './services/oidc.service';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { AuthorizedGuard } from './guards/authorized.guard';
 import { AccessLevelResolver } from './services/access-level.resolver';
@@ -20,7 +19,6 @@ import { ResponseInterceptorProvider } from './interceptors/response.interceptor
   declarations: [CallbackComponent],
   providers: [
     AuthService,
-    OidcService,
     AuthorizationService,
     AuthenticatedGuard,
     AuthorizedGuard,

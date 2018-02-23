@@ -12,12 +12,12 @@ This project is an [Angular](https://angular.io/) `5.0.0` project, and was gener
       * [Shared Module](#shared-module)
       * [Layout Module](#layout-module)
    * [FAQs](#faqs)
-      * [Authentication/Authorization](#how-to-apply-authentication-or-authorization-in-an-angular-routes)   
-      * [BlockUI](#how-to-use-block-ui-in-my-component)   
-      * [Toastr](#how-to-use-toastr-in-my-component)   
-      * [Alert Notification](#how-to-use-alert-notification-in-my-component)   
-      * [Modal](#how-to-use-modal-in-my-component)   
-      * [Sweetalert2](#how-to-use-sweetalert2-in-my-component)   
+      * [Authentication/Authorization](#how-to-apply-authentication-or-authorization-in-an-angular-routes-)   
+      * [BlockUI](#how-to-use-block-ui-in-my-component-)   
+      * [Toastr](#how-to-use-toastr-in-my-component-)   
+      * [Alert Notification](#how-to-use-alert-notification-in-my-component-)   
+      * [Modal](#how-to-use-modal-in-my-component-)   
+      * [Sweetalert2](#how-to-use-sweetalert2-in-my-component-)   
    * [Resources](#resources)      
 <!--te-->
 
@@ -269,23 +269,23 @@ After user is logged in, the App will ask for `pagesAccessAuthorizationInfo` fro
 
 ```js
 [
-    // BusinessAccountManagement module
+    // Management module
     {
-        name: FrontendShell.BusinessAccountManagement.Name,
+        name: FrontendShell.Management.Name,
         rolesAccess: [
-            { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess }
+            { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess }
         ],
         pages: [
             {
-                name: FrontendShell.BusinessAccountManagement.Pages.ListBusiness,
+                name: FrontendShell.Management.Pages.ListBusiness,
                 rolesAccess: [
-                    { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess },
+                    { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess },
                 ]
             },
             {
-                name: FrontendShell.BusinessAccountManagement.Pages.EditBusiness,
+                name: FrontendShell.Management.Pages.EditBusiness,
                 rolesAccess: [
-                    { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess },
+                    { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess },
                 ]
             }
         ]
@@ -293,13 +293,13 @@ After user is logged in, the App will ask for `pagesAccessAuthorizationInfo` fro
 
     // Investigation module
     {
-        name: FrontendShell.InvestigationStudio.Name,
+        name: FrontendShell.Investigation.Name,
         rolesAccess: [
             { role: UserRole.Investigator, accessLevel: AccessLevel.FullAccess },
         ],
         pages: [
             {
-                name: FrontendShell.InvestigationStudio.Pages.RecentJourneys,
+                name: FrontendShell.Investigation.Pages.RecentJourneys,
                 rolesAccess: [
                     { role: UserRole.Investigator, accessLevel: AccessLevel.ReadOnly },
                 ]
@@ -338,8 +338,8 @@ So `AuthorizedGuard` will depend on this information to determine if the user ha
         component: RecentJourneysComponent,
         canActivate: [AuthorizedGuard],
         data: {
-          moduleName: FrontendShell.InvestigationStudio.Name, // this is optional
-          pageName: FrontendShell.InvestigationStudio.Pages.RecentJourneys
+          moduleName: FrontendShell.Investigation.Name, // this is optional
+          pageName: FrontendShell.Investigation.Pages.RecentJourneys
         }
       }
     ]
@@ -369,7 +369,7 @@ So `AuthorizedGuard` will depend on this information to determine if the user ha
         component: RecentJourneysComponent,
         canActivate: [AuthorizedGuard],
         data: {
-          pageName: FrontendShell.InvestigationStudio.Pages.RecentJourneys
+          pageName: FrontendShell.Investigation.Pages.RecentJourneys
         }
       }
     ]
@@ -398,7 +398,7 @@ So `AuthorizedGuard` will depend on this information to determine if the user ha
         component: RecentJourneysComponent,
         canActivate: [AuthorizedGuard],
         data: {
-          moduleName: FrontendShell.InvestigationStudio.Name
+          moduleName: FrontendShell.Investigation.Name
         }
       }
     ]
@@ -445,7 +445,7 @@ So `AuthorizedGuard` will depend on this information to determine if the user ha
     component: InvestigationComponent,
     canActivateChild: [AuthorizedGuard],
     data: {
-      moduleName: FrontendShell.InvestigationStudio.Name
+      moduleName: FrontendShell.Investigation.Name
     },
     children: [
       {
@@ -461,7 +461,7 @@ So `AuthorizedGuard` will depend on this information to determine if the user ha
 
 *_In case Module name for parent route is provided:_*
 + Remember that `canActivateChild` applied just when try to access any child route but NOT the route it self. 
-+ In this case all the routes declared in the children section will have the same authority which is for `InvestigationStudio` module.
++ In this case all the routes declared in the children section will have the same authority which is for `Investigation` module.
 + If you provide both module name and page name in the parent route, then all children routes will have this page's authority.
 + any data provided from child route will be ignored in the current implementaion.
 
@@ -491,7 +491,7 @@ To use this service simply add it to the route's `resolve` property:
     path: 'Investigation',
     component: InvestigationComponent,
     data: {
-      moduleName: FrontendShell.InvestigationStudio.Name
+      moduleName: FrontendShell.Investigation.Name
     },
     children: [
       {

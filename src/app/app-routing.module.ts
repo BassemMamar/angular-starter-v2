@@ -10,25 +10,23 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 import { CaseInsensitiveMatcher } from './core/base/url-case-insensitive/case-insensitive-matcher';
 
 // region routes path Matchers
-export function BusinessAccountManagementMatch() {
-  return CaseInsensitiveMatcher('BusinessAccountManagement').apply(this, arguments);
+export function ManagementMatch() {
+  return CaseInsensitiveMatcher('Management').apply(this, arguments);
 }
-export function InvestigationStudioMatch() {
-  return CaseInsensitiveMatcher('InvestigationStudio').apply(this, arguments);
+export function InvestigationMatch() {
+  return CaseInsensitiveMatcher('Investigation').apply(this, arguments);
 }
 // endregion
 
 const routes: Routes = [
   {
-    matcher: BusinessAccountManagementMatch,
-    // path: 'bam',
-    loadChildren: 'app/feature-modules/business-account-management/business-account-management.module#BusinessAccountManagementModule',
+    matcher: ManagementMatch,
+    loadChildren: 'app/feature-modules/management/management.module#ManagementModule',
     data: { preload: false }
   },
   {
-    matcher: InvestigationStudioMatch,
-    // path: 'investigation',
-    loadChildren: 'app/feature-modules/investigation-studio/investigation-studio.module#InvestigationStudioModule',
+    matcher: InvestigationMatch,
+    loadChildren: 'app/feature-modules/investigation/investigation.module#InvestigationModule',
     data: { preload: false }
   },
 

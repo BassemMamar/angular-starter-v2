@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OidcService } from '../services/oidc.service';
 import { LoggerService } from '../../base/logger/logger.service';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from '../../../shared/components/toastr/toastr.service';

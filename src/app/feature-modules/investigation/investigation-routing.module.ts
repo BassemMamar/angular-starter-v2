@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { InvestigationComponent } from './investigation-studio.component';
+import { InvestigationComponent } from './investigation.component';
 import { RecentJourneysComponent } from './recent-journeys/recent-journeys.component';
 import { CaseInsensitiveMatcher } from '../../core/base/url-case-insensitive/case-insensitive-matcher';
 import { AuthClients } from '../../core/auth/model/auth-clients';
@@ -18,10 +18,10 @@ const routes: Routes = [
   {
     path: '',
     component: InvestigationComponent,
-    canActivate: [AuthenticatedGuard],
+   // canActivate: [AuthenticatedGuard],
     data: {
       authClient: AuthClients.FES,
-      moduleName: FrontendShell.InvestigationStudio.Name
+      moduleName: FrontendShell.Investigation.Name
     },
 
     children: [
@@ -29,10 +29,10 @@ const routes: Routes = [
       {
         matcher: RecentJourneysMatch,
         component: RecentJourneysComponent,
-        canActivate: [AuthorizedGuard],
+       // canActivate: [AuthorizedGuard],
         data: {
-          moduleName: FrontendShell.InvestigationStudio.Name,
-          pageName: FrontendShell.InvestigationStudio.Pages.RecentJourneys
+          moduleName: FrontendShell.Investigation.Name,
+          pageName: FrontendShell.Investigation.Pages.RecentJourneys
         },
         resolve: {
           accessLevel: AccessLevelResolver
@@ -46,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InvestigationStudioRoutingModule { }
+export class InvestigationRoutingModule { }

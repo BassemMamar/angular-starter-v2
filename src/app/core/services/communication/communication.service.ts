@@ -6,17 +6,11 @@ import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class CommunicationService {
-    // subject: BehaviorSubject<any>;
     private _authority: string;
-    private _businessCode: string;
     private _api: any;
-    private _visionCortexBasePath: string;
 
     constructor(private subDomainService: SubDomainService) { }
 
-    public get businessCode(): string {
-        return this._businessCode;
-    }
 
     public get authority(): string {
         return this._authority;
@@ -24,10 +18,6 @@ export class CommunicationService {
 
     public get api(): any {
         return this._api;
-    }
-
-    public get visionCortexBasePath(): string {
-        return this._visionCortexBasePath;
     }
 
 }

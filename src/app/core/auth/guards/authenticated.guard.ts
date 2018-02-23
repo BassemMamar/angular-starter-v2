@@ -26,20 +26,9 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     if (this.authService.loggedIn) {
       return true;
     } else {
-      this.authService.login(authClient, redirectUrl);
+      this.authService.login(redirectUrl);
       return false;
     }
 
-    // This code contain an error coz of loggedIn$ observable
-    // const obs = this.authService.loggedIn$;
-    // obs.subscribe(loggedin => {
-    //   if (!loggedin) {
-    //     this.authService.login(authClient, redirectUrl);
-    //     return false;
-    //   }
-    //   return true;
-    // });
-
-    // return obs;
   }
 }

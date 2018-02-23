@@ -2,23 +2,23 @@ import { FrontendShell } from './app-pages-declaration/app-pages-declaration';
 import { UserRole, AccessLevel } from '../model/user-roles.enum';
 
 export const pagesAccessAuthorizationInfo = [
-    // BusinessAccountManagement module
+    // Management module
     {
-        name: FrontendShell.BusinessAccountManagement.Name,
+        name: FrontendShell.Management.Name,
         rolesAccess: [
-            { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess }
+            { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess }
         ],
         pages: [
             {
-                name: FrontendShell.BusinessAccountManagement.Pages.ListBusiness,
+                name: FrontendShell.Management.Pages.ListBusiness,
                 rolesAccess: [
-                    { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess }
+                    { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess }
                 ]
             },
             {
-                name: FrontendShell.BusinessAccountManagement.Pages.EditBusiness,
+                name: FrontendShell.Management.Pages.EditBusiness,
                 rolesAccess: [
-                    { role: UserRole.BusinessAccountManager, accessLevel: AccessLevel.FullAccess }
+                    { role: UserRole.Manager, accessLevel: AccessLevel.FullAccess }
                 ]
             }
         ]
@@ -26,13 +26,13 @@ export const pagesAccessAuthorizationInfo = [
 
     // Investigation module
     {
-        name: FrontendShell.InvestigationStudio.Name,
+        name: FrontendShell.Investigation.Name,
         rolesAccess: [
             { role: UserRole.Investigator, accessLevel: AccessLevel.FullAccess }
         ],
         pages: [
             {
-                name: FrontendShell.InvestigationStudio.Pages.RecentJourneys,
+                name: FrontendShell.Investigation.Pages.RecentJourneys,
                 rolesAccess: [
                     { role: UserRole.Investigator, accessLevel: AccessLevel.ReadOnly },
                 ]

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoggerService } from '../../core/base/logger/logger.service';
 
 @Component({
-  templateUrl: './investigation-studio.component.html',
-  styleUrls: ['./investigation-studio.component.scss']
+  templateUrl: './investigation.component.html',
+  styleUrls: ['./investigation.component.scss']
 })
 export class InvestigationComponent implements OnInit {
 

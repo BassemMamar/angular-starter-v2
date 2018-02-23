@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BusinessAccountManagementComponent } from './business-account-management.component';
 import { ListComponent } from './businesses/list/list.component';
 import { EditComponent } from './businesses/edit/edit.component';
 
@@ -11,6 +10,7 @@ import { AuthenticatedGuard } from '../../core/auth/guards/authenticated.guard';
 import { AuthorizedGuard } from '../../core/auth/guards/authorized.guard';
 import { FrontendShell } from '../../core/auth/pages-access-authorization/app-pages-declaration/app-pages-declaration';
 import { AccessLevelResolver } from '../../core/auth/services/access-level.resolver';
+import { ManagementComponent } from './management.component';
 
 export function ListBusinessMatch() {
   return CaseInsensitiveMatcher('List').apply(this, arguments);
@@ -22,12 +22,12 @@ export function EditBusinessMatch() {
 const routes: Routes = [
   {
     path: '',
-    component: BusinessAccountManagementComponent,
-    canActivate: [AuthenticatedGuard],
-    canActivateChild: [AuthenticatedGuard, AuthorizedGuard],
+    component: ManagementComponent,
+   // canActivate: [AuthenticatedGuard],
+   // canActivateChild: [AuthenticatedGuard, AuthorizedGuard],
     data: {
-      authClient: AuthClients.BAM,
-      moduleName: FrontendShell.BusinessAccountManagement.Name
+      authClient: AuthClients.Management,
+      moduleName: FrontendShell.Management.Name
     },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'List' },
@@ -42,7 +42,7 @@ const routes: Routes = [
       {
         matcher: EditBusinessMatch, component: EditComponent,
         data: {
-          pageName: FrontendShell.BusinessAccountManagement.Pages.EditBusiness
+          pageName: FrontendShell.Management.Pages.EditBusiness
         },
         resolve: {
           accessLevel: AccessLevelResolver
@@ -57,4 +57,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BusinessAccountManagementRoutingModule { }
+export class ManagementRoutingModule { }

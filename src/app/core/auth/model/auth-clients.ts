@@ -1,4 +1,4 @@
 export enum AuthClients {
-    BAM = 'BusinessAccountManagement',
+    Management = 'Management',
     FES = 'FrontendShell'
 }

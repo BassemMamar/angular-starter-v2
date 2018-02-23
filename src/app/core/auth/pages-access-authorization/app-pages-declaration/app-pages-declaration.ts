@@ -1,16 +1,16 @@
-import { InvestigationStudioPages } from './investigation.pages';
-import { BusinessAccountManagementPages } from './business-account-management.pages';
+import { InvestigationPages } from './investigation.pages';
+import { ManagementPages } from './business-account-management.pages';
 
 
 export class FrontendShell {
-    static BusinessAccountManagement = {
-        Name: 'BusinessAccountManagement',
-        Pages: BusinessAccountManagementPages
+    static Management = {
+        Name: 'Management',
+        Pages: ManagementPages
     };
 
-    static InvestigationStudio = {
-        Name: 'InvestigationStudio',
-        Pages: InvestigationStudioPages
+    static Investigation = {
+        Name: 'Investigation',
+        Pages: InvestigationPages
     };
 
 }
