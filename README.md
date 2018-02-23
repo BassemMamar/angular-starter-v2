@@ -12,12 +12,12 @@ This project is an [Angular](https://angular.io/) `5.0.0` project, and was gener
       * [Shared Module](#shared-module)
       * [Layout Module](#layout-module)
    * [FAQs](#faqs)
-      * [Authentication/Authorization](#how-to-apply-authentication-or-authorization-in-an-angular-routes)   
-      * [BlockUI](#how-to-use-block-ui-in-my-component)   
-      * [Toastr](#how-to-use-toastr-in-my-component)   
-      * [Alert Notification](#how-to-use-alert-notification-in-my-component)   
-      * [Modal](#how-to-use-modal-in-my-component)   
-      * [Sweetalert2](#how-to-use-sweetalert2-in-my-component)   
+      * [Authentication/Authorization](#how-to-apply-authentication-or-authorization-in-an-angular-routes-)   
+      * [BlockUI](#how-to-use-block-ui-in-my-component-)   
+      * [Toastr](#how-to-use-toastr-in-my-component-)   
+      * [Alert Notification](#how-to-use-alert-notification-in-my-component-)   
+      * [Modal](#how-to-use-modal-in-my-component-)   
+      * [Sweetalert2](#how-to-use-sweetalert2-in-my-component-)   
    * [Resources](#resources)      
 <!--te-->
 
