@@ -11,6 +11,7 @@ import { AuthorizedGuard } from '../../core/auth/guards/authorized.guard';
 import { FrontendShell } from '../../core/auth/pages-access-authorization/app-pages-declaration/app-pages-declaration';
 import { AccessLevelResolver } from '../../core/auth/services/access-level.resolver';
 import { ManagementComponent } from './management.component';
+import { HeroFormComponent } from './heros/hero-form/hero-form.component';
 
 export function ListBusinessMatch() {
   return CaseInsensitiveMatcher('List').apply(this, arguments);
@@ -18,19 +19,22 @@ export function ListBusinessMatch() {
 export function EditBusinessMatch() {
   return CaseInsensitiveMatcher('Edit/:businessId').apply(this, arguments);
 }
+export function HeroFormMatch() {
+  return CaseInsensitiveMatcher('Hero').apply(this, arguments);
+}
+
 
 const routes: Routes = [
   {
     path: '',
     component: ManagementComponent,
-   // canActivate: [AuthenticatedGuard],
-   // canActivateChild: [AuthenticatedGuard, AuthorizedGuard],
+    // canActivate: [AuthenticatedGuard],
+    // canActivateChild: [AuthenticatedGuard, AuthorizedGuard],
     data: {
       authClient: AuthClients.Management,
       moduleName: FrontendShell.Management.Name
     },
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'List' },
       {
         matcher: ListBusinessMatch, component: ListComponent,
         data: {
@@ -39,6 +43,7 @@ const routes: Routes = [
           accessLevel: AccessLevelResolver
         }
       },
+
       {
         matcher: EditBusinessMatch, component: EditComponent,
         data: {
@@ -47,10 +52,20 @@ const routes: Routes = [
         resolve: {
           accessLevel: AccessLevelResolver
         }
-      }
+      },
+
+      {
+        matcher: HeroFormMatch, component: HeroFormComponent
+      },
+
+       { path: '', pathMatch: 'full', redirectTo: 'List' }
+
 
     ]
-  }
+  },
+
+
+ // { path: '**', pathMatch: 'full', redirectTo: '/List' }
 ];
 
 @NgModule({

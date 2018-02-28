@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { CaseInsensitiveMatcher } from '../core/base/url-case-insensitive/case-insensitive-matcher';
+import { LanguageComponent } from '../core/components/language/language.component';
 
 export function HomeMatch() {
   return CaseInsensitiveMatcher('Home').apply(this, arguments);
@@ -11,16 +12,24 @@ export function HomeMatch() {
 
 const routes: Routes = [
   {
-    path: '',
-    component: DashboardComponent,
+    path: ':lang',
+    component: LanguageComponent,
     children: [
       {
-        matcher: HomeMatch,
-        component: HomeComponent
-      },
-      { path: '', pathMatch: 'full', redirectTo: 'Home' }
-    ]
-  }
+        path: '',
+        component: DashboardComponent,
+        children: [
+          {
+            matcher: HomeMatch,
+            component: HomeComponent
+          },
+          { path: '', pathMatch: 'full', redirectTo: 'ar/Home' },
+        ]
+      }
+    ],
+  },
+
+ // { path: '', pathMatch: 'full', redirectTo: 'en' }
 
 
 ];

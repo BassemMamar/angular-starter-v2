@@ -3,6 +3,7 @@ import { Router, NavigationStart, NavigationEnd, NavigationError } from '@angula
 
 import { PageLoaderService } from './core/components/page-loader/page-loader.service';
 import { LoggerService } from './core/base/logger/logger.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,13 @@ import { LoggerService } from './core/base/logger/logger.service';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  constructor(private router: Router, private logger: LoggerService, private pageLoader: PageLoaderService) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private logger: LoggerService, private pageLoader: PageLoaderService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const langValue = this.route.snapshot.paramMap.getAll('lang');
+    this.logger.info(`AppComponent - Lang value is: ${langValue}`);
+  }
 
   ngAfterViewInit() {
 

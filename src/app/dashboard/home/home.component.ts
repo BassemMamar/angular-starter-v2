@@ -15,6 +15,7 @@ import swal from 'sweetalert2';
 import { BlockUI, NgBlockUI, BlockUIService } from 'ng-block-ui';
 import { BlockUITemplateComponent } from '../../shared/components/block-ui/block-ui-template.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './home.component.html',
@@ -37,11 +38,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private commonService: CommonService,
     private alertService: AlertService,
     private toasrtService: ToastrService,
-    private blockUIService: BlockUIService) { }
+    private blockUIService: BlockUIService,
+
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.logger.info(`HomeComponent has been Initiated..`);
 
+    const langValue = this.route.parent.snapshot.paramMap.getAll('lang');
+    this.logger.info(`Lang value is: ${langValue}`);
   }
 
   ngAfterViewInit() {
