@@ -8,7 +8,16 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        
+        {
+          "glob": "style-rtl.css",
+          "input": "./assets/css/",
+          "output": "./assets/css/"
+        },
+        {
+          "glob": "style.css",
+          "input": "./assets/css/",
+          "output": "./assets/css/"
+        },
         {
           "glob": "web.config",
           "input": "./assets/",

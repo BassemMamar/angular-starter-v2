@@ -1,8 +1,14 @@
-<h2>
-  Here are some links to help you start: </h2>
+<div>
+  <h2>
+    Here are some links to help you start:
+  </h2>
+  <button (click)="handelChangeTheme()" class="btn btn-primary">Load Custom Css</button>
+
+</div>
+
 <ul>
   <li>
-    <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+    <a [routerLink]="['en/home']" routerLinkActive="active">Home</a>
   </li>
   <li>
     <a [routerLink]="['/ar/Management']" routerLinkActive="active">Management</a>
@@ -13,5 +19,5 @@
 </ul>
 
 <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
+</div>
