@@ -26,7 +26,6 @@ import { HttpErrorHandlingService } from './services/http-error-handling/http-er
 
 /* Third Party Imports */
 import { ThirdPartyModule } from './third-party-modules/third-party.module';
-import { LanguageComponent } from './components/language/language.component';
 
 @NgModule({
   imports: [
@@ -49,9 +48,9 @@ import { LanguageComponent } from './components/language/language.component';
     InternalServerErrorComponent,
     TooltipsComponent,
 
+
     ScrollTopComponent,
-    PageLoaderComponent,
-    LanguageComponent
+    PageLoaderComponent
   ],
   exports: [
 

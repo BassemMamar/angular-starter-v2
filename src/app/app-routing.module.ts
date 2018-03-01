@@ -8,7 +8,6 @@ import { SelectivePreloadingStrategy } from './core/base/lazy-loading/selective-
 
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { CaseInsensitiveMatcher } from './core/base/url-case-insensitive/case-insensitive-matcher';
-import { LanguageComponent } from './core/components/language/language.component';
 
 // region routes path Matchers
 export function ManagementMatch() {
@@ -20,23 +19,16 @@ export function InvestigationMatch() {
 // endregion
 
 const routes: Routes = [
+
   {
-    path: ':lang',
-    component: LanguageComponent,
-    children: [
-      {
-        matcher: ManagementMatch,
-        loadChildren: 'app/feature-modules/management/management.module#ManagementModule',
-        data: { preload: false }
-      },
-      {
-        matcher: InvestigationMatch,
-        loadChildren: 'app/feature-modules/investigation/investigation.module#InvestigationModule',
-        data: { preload: false }
-      },
-      { path: '**', component: PageNotFoundComponent }
-      // { path: '**', redirectTo: '/home', pathMatch: 'full' }
-    ],
+    matcher: ManagementMatch,
+    loadChildren: 'app/feature-modules/management/management.module#ManagementModule',
+    data: { preload: false }
+  },
+  {
+    matcher: InvestigationMatch,
+    loadChildren: 'app/feature-modules/investigation/investigation.module#InvestigationModule',
+    data: { preload: false }
   },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
